@@ -1,58 +1,47 @@
-/*
-  * @package 
-  * @subpackage template name HTML
-  * 
-  * Template Scripts
-  * Created by themeturn
-  
-  1. Fixed header
-  2. Site search
-  3. Main slideshow
-  4. Owl Carousel
-      a. Testimonial
-      b. Clients
-      c. Team
-  5. Back to top
-  6. Skills
-  7. BX slider
-      a. Blog Slider
-      b. Portfolio item slider
-  8. Isotope
-  9. Animation (wow)
-  10. Flickr
-  
-*/
 
-
-jQuery(function($) {
-  "use strict";
-
-   $('.navigation').singlePageNav({
-        currentClass: 'active',
-        changeHash: true,
-        scrollSpeed: 750,
-        offset: 0,
-        filter: ':not(.external)',
-        easing: 'swing',
-
-    });
-
-    $.noConflict();
-     $('.nav a').on('click', function(){ 
-        if($('.navbar-toggle').css('display') !='none'){
-            $(".navbar-toggle").trigger( "click" );
-        }
-    });
-
-
- 
-// prettyphoto
-
- $("a[data-rel^='prettyPhoto']").prettyPhoto();
- 
-    
- 
-
-
-
+ /* jQuery Pre loader
+  -----------------------------------------------*/
+$(window).load(function(){
+    $('.preloader').fadeOut(1000); // set duration in brackets
 });
+
+
+$(document).ready(function() {
+
+  /* Home Slideshow Vegas
+  -----------------------------------------------*/
+  $(function() {
+    $('body').vegas({
+        slides: [
+            { src: 'images/top_background1.jpg' },
+            { src: 'images/top_background2.jpg' },
+            { src: 'images/top_background3.png' },
+            { src: 'images/top_background4.jpg' }
+        ],
+        timer: false,
+        transition: [ 'zoomOut', ]
+    });
+  });
+
+
+   /* Back top
+  -----------------------------------------------*/
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 200) {
+        $('.go-top').fadeIn(200);
+        } else {
+          $('.go-top').fadeOut(200);
+        }
+        });
+        // Animate the scroll to top
+      $('.go-top').click(function(event) {
+        event.preventDefault();
+      $('html, body').animate({scrollTop: 0}, 300);
+      })
+
+
+  /* wow
+  -------------------------------*/
+  new WOW({ mobile: false }).init();
+
+  });
